@@ -1,0 +1,31 @@
+MODULE SOCKET (SYSMODULE)
+    PROC connectToServer(string IPADDRESS, num portNo)
+        VAR num retryNo := 0;
+        
+        SocketCreate clientSocket;
+        SocketConnect clientSocket,IPADDRESS,portNo;
+        TPErase;
+        TPWrite "Connection succesfull";
+        
+        ERROR
+            IF ERRNO=ERR_SOCK_TIMEOUT THEN
+                WaitTime 1;
+                retryNo := retryNo + 1;
+                IF retryNo >= 3 THEN
+                    ErrWrite\I, "Connection failed", "more errors" \RL2:= "Even more erros", \RL3:="3 more errors";
+                    TPWrite "Socket failed after 3 rettires";
+                    retryNo := 0;
+                    WaitTime 5;
+                    ExitCycle;
+                ELSE
+                    RETRY;
+                ENDIF
+            ELSEIF ERRNO=ERR_SOCK_CLOSED THEN
+                waitTime 5;
+                ExitCycle;
+            ELSE
+                TPWrite "ERRno = "\Num:=ERRNO;
+                Stop;
+            ENDIF
+    ENDPROC
+ENDMODULE
