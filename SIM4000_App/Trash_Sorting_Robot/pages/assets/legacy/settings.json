@@ -1,0 +1,27 @@
+{
+  "showNavigation": true,
+  "showSearchBox": false,
+  "showPageHistory": false,
+  "startPage": null,
+  "defaultLanguage": "en",
+  "unitSystem": "si",
+  "highContrastMode": false,
+  "pollInterval": 5000,
+  "check_connection": true,
+  "compactMode": false,
+  "canChangeLanguage": true,
+  "canChangeUnit": true,
+  "canChangeViewMode": true,
+  "canChangeHighContrastMode": true,
+  "canChangeCompactMode": true,
+  "availableUserLevel": [
+    "Run",
+    "Operator",
+    "Maintenance",
+    "AuthorizedClient",
+    "Service",
+    "SICKService",
+    "Developer"
+  ],
+  "useGlobalLock": false
+}
