@@ -1,0 +1,36 @@
+MODULE Wizard
+    CONST robtarget pPick:=[[375.702857971191,-221.998170018196,49.0186400711536],[0.00673907157033682,-0.730882823467255,-0.682469666004181,-0.0000419481657445431],[-1,0,0,0],[9000000000,9000000000,9000000000,9000000000,9000000000,9000000000]];
+    CONST robtarget pPlace:=[[393.559455871582,217.703387141228,57.8465983271599],[0.00838375743478537,0.00675864517688751,0.999519228935242,-0.029074115678668],[0,-1,0,0],[9000000000,9000000000,9000000000,9000000000,9000000000,9000000000]];
+    CONST robtarget pHome:=[[478.081822395325,-7.32817966490984,447.429925203323],[0.00977577641606331,-0.594875633716583,-0.80367511510849,-0.0115657625719905],[-1,0,0,0],[9000000000,9000000000,9000000000,9000000000,9000000000,9000000000]];
+    CONST robtarget dRection:=[[393.559455871582,217.703387141228,57.8465983271599],[0.00838375743478537,0.00675864517688751,0.999519228935242,-0.029074115678668],[0,-1,0,0],[9000000000,9000000000,9000000000,9000000000,9000000000,9000000000]];
+
+    PROC main()
+        MoveJ pHome,v200,fine,tSchunk_Coact40\WObj:=wobj0;
+        PickPart1;
+        move1;
+        PlacePart1;
+        MoveJ pHome,v200,fine,tSchunk_Coact40\WObj:=wobj0;
+    ENDPROC
+
+
+    PROC PickPart1()
+        MoveJ reltool(pPick,0,0,-50),v200,fine,tSchunk_Coact40\WObj:=wobj0;
+        MoveL pPick,v200,fine,tSchunk_Coact40\WObj:=wobj0;
+        CloseGripper;
+        MoveL reltool(pPick,0,0,-50),v200,fine,tSchunk_Coact40\WObj:=wobj0;
+    ENDPROC
+
+    PROC move1()
+        MoveJ reltool(pPick,0,0,-50),v200,fine,tSchunk_Coact40\WObj:=wobj0;
+        MoveL dRection,v200,fine,tSchunk_Coact40\WObj:=wobj0;
+        MoveL reltool(pPick,0,0,-50),v200,fine,tSchunk_Coact40\WObj:=wobj0;
+    ENDPROC
+
+    PROC PlacePart1()
+        MoveJ reltool(pPlace,0,0,-50),v200,fine,tSchunk_Coact40\WObj:=wobj0;
+        MoveL pPlace,v200,fine,tSchunk_Coact40\WObj:=wobj0;
+        OpenGripper;
+        MoveL reltool(pPlace,0,0,-50),v200,fine,tSchunk_Coact40\WObj:=wobj0;
+    ENDPROC
+
+ENDMODULE
